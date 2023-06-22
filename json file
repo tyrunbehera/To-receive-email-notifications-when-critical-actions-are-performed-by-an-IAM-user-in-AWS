@@ -1,0 +1,10 @@
+{
+  "source": ["cloudtrail.amazonaws.com"],
+  "detail-type": ["AWS API Call via CloudTrail"],
+  "detail": {
+    "userIdentity": {
+      "type": ["IAMUser"]
+    },
+    "eventType": ["AwsApiCall"]
+  }
+}
