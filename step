@@ -1,0 +1,43 @@
+you can set up AWS CloudTrail and Amazon CloudWatch Events. Here's a step-by-step guide to achieving this:
+
+Step 1: Enable AWS CloudTrail
+
+Go to the AWS Management Console and navigate to the CloudTrail service.
+Click on "Trails" in the left-hand menu.
+Click on "Create trail" and provide a name for your trail.
+Select the S3 bucket where you want to store CloudTrail logs.
+Under "Management events," enable logging for "Write-only events" or "All events" depending on your requirements.
+Under "Data events," choose the specific services or resources for which you want to track events.
+Configure any additional settings as per your needs.
+Click on "Create" to create the CloudTrail trail.
+
+
+
+Step 2: Set Up Amazon CloudWatch Events Rule
+
+Go to the AWS Management Console and navigate to the CloudWatch service.
+Click on "Events" in the left-hand menu.
+Click on "Create rule" to define a rule for triggering an event.
+Under "Event source," select "Event pattern."
+In the "Event pattern" section, you can specify the events you want to monitor. For example, you can set the source to "cloudtrail.amazonaws.com" and the detail type to "AWS API Call via CloudTrail" to capture all API calls made by IAM users.
+Under "Targets," click on "Add target" and select "SNS topic."
+Select the SNS topic to which you want to send the email notifications.
+Click on "Configure details" and provide a name and description for the CloudWatch Events rule.
+Click on "Create rule" to create the CloudWatch Events rule.
+
+
+
+Step 3: Configure Amazon SNS (Simple Notification Service)
+
+Go to the AWS Management Console and navigate to the SNS service.
+Click on "Topics" in the left-hand menu.
+Click on "Create topic" to create a new SNS topic.
+Provide a name and display name for the topic.
+Click on "Create topic" to create the SNS topic.
+Once the topic is created, select it from the list of topics.
+Under the "Subscriptions" tab, click on "Create subscription."
+Select "Email" as the protocol and enter your email address.
+Click on "Create subscription" to subscribe to the SNS topic.
+
+
+Now, whenever a critical action is performed by an IAM user, AWS CloudTrail will capture the event and trigger an Amazon CloudWatch Events rule. The rule, in turn, will publish a notification to the specified SNS topic, which will send an email to the subscribed email address.
